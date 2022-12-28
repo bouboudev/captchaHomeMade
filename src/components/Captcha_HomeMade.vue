@@ -12,6 +12,9 @@
             <tr>
               <th :colspan="wordArray.length">
               <span>You have <span class="active" > {{ compteur}} </span>chances.</span>
+              <span @click="reset()"> 
+              <mdicon class="hover icon" name="reload" size="27"/>
+              </span>
               </th>
             </tr>
           </thead>
@@ -31,7 +34,7 @@
         <h2 v-if="captchaBad" :style="isColor">Captcha not Good 😡</h2>
       </div>
       <div v-if="finish">
-        <button class="button-3" role="button" @click="reset()">Reset</button>
+        <button class="button-3" role="button" @click="reset()"><mdicon class="" name="reload" size="27"/></button>
       </div>
   </div>
 </template>
@@ -117,17 +120,6 @@ h1 {
   font-size: 70px;
   margin: 0;
   padding: 0;
-}
-ul {
-  list-style-type: none;
-  padding: 0;
-}
-li {
-  display: inline-block;
-  margin: 0 10px;
-}
-a {
-  color: #42b983;
 }
 
 table {
