@@ -1,8 +1,8 @@
 <template>
-  <div>
+  <div class="captcha">
     <h1>CaptchaHomeMade</h1>        
     <div class="tableau">
-      <table v-if="!finish">
+      <table v-if="!finish" class="card">
           <thead>
             <tr>
               <th :colspan="wordArray.length">
@@ -25,13 +25,13 @@
             </tr>
           </tbody>
       </table>
-      <div v-else>
-        <button class="button-3" role="button" @click="reset()">Reset</button>
-      </div>
     </div>
       <div>
-        <h1 v-if="captchaGood" :style="isColor">Captcha Good 😃</h1>
-        <h1 v-if="captchaBad" :style="isColor">Captcha not Good 😡</h1>
+        <h2 v-if="captchaGood" :style="isColor">Captcha Good 😃</h2>
+        <h2 v-if="captchaBad" :style="isColor">Captcha not Good 😡</h2>
+      </div>
+      <div v-if="finish">
+        <button class="button-3" role="button" @click="reset()">Reset</button>
       </div>
   </div>
 </template>
@@ -95,7 +95,7 @@ export default {
         if(this.captchaGood){
           return 'color : #42b983';
         }
-          return 'color : red';
+          return 'color : #e74c3c';
       },
   },
   mounted(){
@@ -105,9 +105,18 @@ export default {
 </script>
 
 <style scoped>
-
-h3 {
-  margin: 40px 0 0;
+.captcha {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  width: 100vw;
+}
+h1 {
+  font-size: 70px;
+  margin: 0;
+  padding: 0;
 }
 ul {
   list-style-type: none;
@@ -128,7 +137,6 @@ border-collapse: collapse;
 
 td,th {
 text-align: left;
-border: 1px solid black;
 padding: 10px;
 }
 
@@ -136,6 +144,7 @@ padding: 10px;
   display: flex;
   justify-content: center;
   align-items: center;
+  
 }
 .icon {
  color: #42b983;
@@ -197,5 +206,18 @@ padding: 10px;
 
 .active{
   color: #42b983;
+}
+
+.card {
+  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+  transition: 0.3s;
+  width: 40%;
+  border-radius: 5px;
+  margin: 10px;
+  background: #f2f2f2;
+}
+
+.card:hover {
+  box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
 }
 </style>
