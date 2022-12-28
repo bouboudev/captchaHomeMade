@@ -1,17 +1,16 @@
 <template>
   <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+    <CaptchaHomeMade msg="CaptchaHomeMade"/>
   </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+import CaptchaHomeMade from './components/Captcha_HomeMade.vue'
 
 export default {
   name: 'App',
   components: {
-    HelloWorld
+    CaptchaHomeMade
   }
 }
 </script>
