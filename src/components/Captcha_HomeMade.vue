@@ -6,12 +6,12 @@
           <thead>
             <tr>
               <th :colspan="wordArray.length">
-              Choose the right icon : <span class="icon" style=" font-size: 30px">{{getIconRandom}}</span>
+              Choose the right icon : <span class="active" style=" font-size: 20px">{{getIconRandom.toUpperCase()}}</span>
               </th>
             </tr>
             <tr>
               <th :colspan="wordArray.length">
-              <span>You have <span style="color: #42b983" > {{ compteur}} </span>chances.</span>
+              <span>You have <span class="active" > {{ compteur}} </span>chances.</span>
               </th>
             </tr>
           </thead>
@@ -75,6 +75,7 @@ export default {
     reset(){
       this.wordArray=['dog','cat','bird','fish','horse','cow','pig','sheep',];
       this.captchaGood = false;
+      this.captchaBad = false;
       this.compteur = 3;
       this.finish = false;
       this.shuffle();
@@ -192,5 +193,9 @@ padding: 10px;
 .button-3:active {
   background-color: #42b983;
   box-shadow: rgba(20, 70, 32, .2) 0 1px 0 inset;
+}
+
+.active{
+  color: #42b983;
 }
 </style>
