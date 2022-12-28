@@ -1,7 +1,6 @@
 <template>
   <div>
-    <h1>{{ msg }}</h1>
-                
+    <h1>CaptchaHomeMade</h1>        
     <div class="tableau">
       <table v-if="!finish">
           <thead>
@@ -19,27 +18,21 @@
           <tbody>
             <tr>
               <td v-for="word in wordArray" :key="word">
-            
-
               <div @click="checkCaptcha(word)" class="hover">
                 <mdicon class="icon" :name="word" size="64"/>
               </div>
-  
               </td>
             </tr>
           </tbody>
       </table>
       <div v-else>
         <button class="button-3" role="button" @click="reset()">Reset</button>
-
       </div>
-
-  </div>
+    </div>
       <div>
         <h1 v-if="captchaGood" :style="isColor">Captcha Good 😃</h1>
         <h1 v-if="captchaBad" :style="isColor">Captcha not Good 😡</h1>
       </div>
-    
   </div>
 </template>
 
@@ -59,60 +52,59 @@ export default {
       finish:false,
     }
   },
-methods:{
-    checkCaptcha(word){
-      
-      if(word === this.getIconRandom){
-        this.compteur = 3;
-        this.captchaGood = true;
-        this.captchaBad = false;
-        this.finish = true;
-      }else{
-        this.wordArray.splice(this.wordArray.indexOf(word),1);
-        this.incCompteur();
-        this.captchaGood = false;
-        this.captchaBad = true;
-        if(this.compteur === 0){
+  methods:{
+      checkCaptcha(word){
+        if(word === this.getIconRandom){
+          this.compteur = 3;
+          this.captchaGood = true;
+          this.captchaBad = false;
           this.finish = true;
+        }else{
+          this.wordArray.splice(this.wordArray.indexOf(word),1);
+          this.incCompteur();
+          this.captchaGood = false;
+          this.captchaBad = true;
+          if(this.compteur === 0){
+            this.finish = true;
+          }
         }
-      }
+      },
+    incCompteur(){
+      this.compteur--;
     },
-  incCompteur(){
-    this.compteur--;
+    reset(){
+      this.wordArray=['dog','cat','bird','fish','horse','cow','pig','sheep',];
+      this.captchaGood = false;
+      this.compteur = 3;
+      this.finish = false;
+      this.shuffle();
+    },
+    shuffle(){
+      return this.wordArray.sort(() => Math.random() - 0.5);
+    },
   },
-  reset(){
-    this.wordArray=['dog','cat','bird','fish','horse','cow','pig','sheep',];
-    this.captchaGood = false;
-    this.compteur = 3;
-    this.finish = false;
+  computed:{
+    getNumberRandom(){
+        return Math.floor(Math.random() * this.wordArray.length);
+      },
+      getIconRandom(){
+        return this.wordArray[this.getNumberRandom];
+      },
+      isColor(){
+        if(this.captchaGood){
+          return 'color : #42b983';
+        }
+          return 'color : red';
+      },
+  },
+  mounted(){
     this.shuffle();
   },
-  shuffle(){
-    return this.wordArray.sort(() => Math.random() - 0.5);
-  },
-},
-computed:{
-  getNumberRandom(){
-      return Math.floor(Math.random() * this.wordArray.length);
-    },
-    getIconRandom(){
-      return this.wordArray[this.getNumberRandom];
-    },
-     isColor(){
-      if(this.captchaGood){
-        return 'color : #42b983';
-      }
-        return 'color : red';
-    },
-},
-mounted(){
-  this.shuffle();
-},
-}
+  }
 </script>
 
-<!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
+
 h3 {
   margin: 40px 0 0;
 }
@@ -132,26 +124,31 @@ table {
 color: gray;
 border-collapse: collapse;
 }
+
 td,th {
 text-align: left;
 border: 1px solid black;
 padding: 10px;
 }
+
 .tableau {
   display: flex;
   justify-content: center;
   align-items: center;
-  
 }
 .icon {
  color: #42b983;
 }
-.hover :hover{
-  cursor: pointer;
-  background: #dcdcdc;
+
+.icon:hover {
+ color: #e7e7e7;
 }
 
-/* CSS */
+.hover :hover{
+  cursor: pointer;
+  background: #42b983;
+}
+
 .button-3 {
   appearance: none;
   background-color: #42b983;

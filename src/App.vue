@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <CaptchaHomeMade msg="CaptchaHomeMade"/>
+    <CaptchaHomeMade/>
   </div>
 </template>
 
